@@ -1,3 +1,3 @@
 ## WaLink API
 
-Generate whatsapp link easily.
+Generate whatsapp link easily

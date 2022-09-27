@@ -1,6 +1,11 @@
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require ("body-parser")
+const authRouter = require("./routes/auth")
+const linkRouter = require("./routes/link")
+const { DATABASE_URL } = require("./config")
+const mongoose = require('mongoose')
+
 require ("dotenv").config()
 
 const app = express()
@@ -16,9 +21,27 @@ app.get("/", (req, res)=>{
   })
 })
 
+app.use("/api/auth", authRouter)
+//app.use("/api/link", linkRouter)
+
+
+
 const PORT = process.env.PORT || 5000
 
 
 const log = (...params)=> console.log(...params)
 
-app.listen(PORT, ()=> log(`server started at http://localhost:${PORT}`))
+//mongodb+srv://walink:<password>@cluster0.q4jqt3j.mongodb.net/?retryWrites=true&w=majority
+
+const DB_URL = "mongodb+srv://walink:1234@cluster0.q4jqt3j.mongodb.net/walink?retryWrites=true&w=majority"
+
+mongoose.connect(DB_URL, { useNewUrlParser: true }).then((res) => {
+  console.log("MONGODB CONNECTED")
+  return app.listen(PORT, () => {
+    console.log(`Server listening @ http://localhost:${PORT}`);
+  })
+
+}).catch((err) => {
+  log(err)
+  console.log(`Error connecting database: ${err.message}`);
+})

@@ -22,7 +22,7 @@ app.get("/", (req, res)=>{
 })
 
 app.use("/api/auth", authRouter)
-//app.use("/api/link", linkRouter)
+app.use("/api/link", linkRouter)
 
 
 

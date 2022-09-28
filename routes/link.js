@@ -12,7 +12,7 @@ Router.get("/get/byUserId", isLoggedIn , (req, res) => {
 });
 
 // get link by id
-Router.get("/get/byId/:linkId", isLoggedIn , (req, res) => {
+Router.get("/get/byId/:linkId" , (req, res) => {
   const {linkId} = req.params;
   Link.allLinkById(res, linkId);
 });

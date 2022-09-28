@@ -31,8 +31,6 @@ const PORT = process.env.PORT || 5000
 
 const log = (...params)=> console.log(...params)
 
-//mongodb+srv://walink:<password>@cluster0.q4jqt3j.mongodb.net/?retryWrites=true&w=majority
-
 const DB_URL = "mongodb+srv://walink:1234@cluster0.q4jqt3j.mongodb.net/walink?retryWrites=true&w=majority"
 
 mongoose.connect(DB_URL, { useNewUrlParser: true }).then((res) => {
